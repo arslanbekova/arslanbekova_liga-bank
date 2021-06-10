@@ -1,0 +1,17 @@
+.logo {
+  display: flex;
+  align-items: baseline;
+}
+
+.logo__image {
+  padding-right: 9px;
+}
+
+.logo__text {
+  font-family: 'Work Sans';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23.46px;
+
+  display: inline-block;
+}

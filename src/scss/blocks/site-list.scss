@@ -1,0 +1,8 @@
+.site-list {
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.site-list__link--active {
+  color: $active-link;
+}

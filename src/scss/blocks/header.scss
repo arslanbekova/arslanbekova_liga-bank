@@ -1,0 +1,22 @@
+.header {
+  background-color: $header-bg;
+}
+
+.header__wrapper {
+  margin: 0 auto;
+  width: 1366px;
+  padding: 26px 98px 35px 98px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header__logo-wrapper {
+  flex-grow: 0.2;
+}
+
+.header__navigation {
+  flex-grow: 1;
+  justify-content: flex-end;
+}
