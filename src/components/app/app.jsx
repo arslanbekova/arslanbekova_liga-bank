@@ -1,9 +1,13 @@
 import React from 'react';
 import Header from '../header/header';
+import Main from '../main/main';
 
 const App = () => {
   return (
-    <Header />
+    <div>
+      <Header />
+      <Main/>
+    </div>
   );
 };
 
