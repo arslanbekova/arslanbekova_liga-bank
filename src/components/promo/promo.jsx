@@ -6,7 +6,7 @@ const Promo = () => {
       <div className="promo__wrapper">
         <h1 className="promo__h1">Лига Банк</h1>
         <p className="promo__intro">Кредиты на любой случай</p>
-        <a className="promo__link" href="credit.html">Рассчитать кредит</a>
+        <a className="button button--calculate" href="credit.html">Рассчитать кредит</a>
       </div>
     </section>
   );
