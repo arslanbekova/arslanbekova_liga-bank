@@ -102,30 +102,28 @@ const Form = () => {
 
   return (
     <form className="form">
-      <div className="form__wrapper">
-        <h2 className="form__title">Конвертер валют</h2>
-        <fieldset className="form__field form__field--is-avaliable">
-          <h3 className="form__field-title">У меня есть</h3>
-          <input className="form__input form__input--number" type="number" value={userForm.avaliableAmount} min={MIN_AMOUNT_FIELD_VALUE} id="is-available" name="is-available" placeholder="1000"
-            onChange={handleAvaliableAmountChange}/>
-          <select className="form__option" onChange={handleAvaliableCurrencyChange} defaultValue={DEFAULT_USER_FORM.avaliableCurrency}>
-            {CURRENCIES.map((currency) => <option value={currency} key={currency}>{currency}</option>)}
-          </select>
-        </fieldset>
-        <fieldset className="form__field form__field--wanted">
-          <h3 className="form__field-title">Хочу приобрести</h3>
-          <input className="form__input form__input--number" type="number" value={userForm.wantedAmount} min={MIN_AMOUNT_FIELD_VALUE} id="wanted" name="wanted" placeholder="1000" onChange={handleWantedAmountChange}/>
-          <select className="form__option" onChange={handleWantedCurrencyChange} defaultValue={DEFAULT_USER_FORM.wantedCurrency}>
-            {CURRENCIES.map((currency) => <option value={currency} key={currency}>{currency}</option>)}
-          </select>
-        </fieldset>
-        <fieldset className="form__field">
-          <label className="visually-hidden" htmlFor="exchange-date">Желаемая дата обмена</label>
-          <input className="form__input form__input--exchange-date" id="exchange-date" type="date" name="exchange-date"
-            required value={userForm.currentDate} min={minDate} onChange={handleDateChange}/>
-        </fieldset>
-        <button className="button button--save" type="button">Сохранить результат</button>
-      </div>
+      <h2 className="form__title">Конвертер валют</h2>
+      <fieldset className="form__field form__field--is-avaliable">
+        <h3 className="form__field-title">У меня есть</h3>
+        <input className="form__input form__input--number" type="number" value={userForm.avaliableAmount} min={MIN_AMOUNT_FIELD_VALUE} id="is-available" name="is-available" placeholder="1000"
+          onChange={handleAvaliableAmountChange}/>
+        <select className="form__option" onChange={handleAvaliableCurrencyChange} defaultValue={DEFAULT_USER_FORM.avaliableCurrency}>
+          {CURRENCIES.map((currency) => <option value={currency} key={currency}>{currency}</option>)}
+        </select>
+      </fieldset>
+      <fieldset className="form__field form__field--wanted">
+        <h3 className="form__field-title">Хочу приобрести</h3>
+        <input className="form__input form__input--number" type="number" value={userForm.wantedAmount} min={MIN_AMOUNT_FIELD_VALUE} id="wanted" name="wanted" placeholder="1000" onChange={handleWantedAmountChange}/>
+        <select className="form__option" onChange={handleWantedCurrencyChange} defaultValue={DEFAULT_USER_FORM.wantedCurrency}>
+          {CURRENCIES.map((currency) => <option value={currency} key={currency}>{currency}</option>)}
+        </select>
+      </fieldset>
+      <fieldset className="form__field">
+        <label className="visually-hidden" htmlFor="exchange-date">Желаемая дата обмена</label>
+        <input className="form__input form__input--exchange-date" id="exchange-date" type="date" name="exchange-date"
+          required value={userForm.currentDate} min={minDate} onChange={handleDateChange}/>
+      </fieldset>
+      <button className="button button--save" type="button">Сохранить результат</button>
     </form>
   );
 };

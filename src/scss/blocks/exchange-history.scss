@@ -1,15 +1,11 @@
 .exchange-history {
-  width: 100%;
-}
-
-.exchange-history__wrapper {
   width: 1366px;
   margin: 0 auto;
   padding: 0 98px;
   box-sizing: border-box;
 }
 
-.exchange-history__container {
+.exchange-history__wrapper {
   background-color: $history-bg;
   padding: 42px 70px;
 }

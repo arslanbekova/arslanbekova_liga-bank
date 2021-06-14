@@ -1,14 +1,12 @@
 import React from 'react';
 import Promo from '../promo/promo';
-import Form from '../form/form';
-import ExchangeHistory from '../exchange-history/exchange-history';
+import Converter from '../converter/converter';
 
 const Main = () => {
   return (
     <main>
       <Promo/>
-      <Form/>
-      <ExchangeHistory/>
+      <Converter/>
     </main>
   );
 };
