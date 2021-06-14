@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import {createAPI} from "../../api";
 
 const api = createAPI();
 
-const Form = () => {
+const Form = ({saveResult, results}) => {
   const CURRENCIES = [
     `RUB`,
     `USD`,
@@ -13,9 +14,11 @@ const Form = () => {
     `CNY`,
   ];
 
-  const MAX_DAYS_GAP = 7;
-
-  const MIN_AMOUNT_FIELD_VALUE = 1;
+  const Breakpoints = {
+    MIN_AMOUNT_FIELD_VALUE: 1,
+    MAX_DAYS_GAP: 7,
+    MAX_HISTORY_RESULTS_COUNT: 10,
+  };
 
   const defaultCurrencies = {
     AVALIABLE: `RUB`,
@@ -72,7 +75,7 @@ const Form = () => {
 
   const handleAvaliableAmountChange = (evt) => {
     const amount = Number(evt.target.value);
-    if (amount < MIN_AMOUNT_FIELD_VALUE) {
+    if (amount < Breakpoints.MIN_AMOUNT_FIELD_VALUE) {
       setUserForm({...DEFAULT_USER_FORM});
       return;
     }
@@ -81,14 +84,14 @@ const Form = () => {
 
   const handleWantedAmountChange = (evt) => {
     const amount = Number(evt.target.value);
-    if (amount < MIN_AMOUNT_FIELD_VALUE) {
+    if (amount < Breakpoints.MIN_AMOUNT_FIELD_VALUE) {
       setUserForm({...DEFAULT_USER_FORM});
       return;
     }
     convertWantedToAvaliable(amount);
   };
 
-  const minDate = dayjs(new Date()).subtract(MAX_DAYS_GAP, `day`).format(`YYYY-MM-DD`);
+  const minDate = dayjs(new Date()).subtract(Breakpoints.MAX_DAYS_GAP, `day`).format(`YYYY-MM-DD`);
 
   const handleDateChange = (evt) => {
     copyUserForm.currentDate = dayjs(evt.target.value).format(`YYYY-MM-DD`);
@@ -100,12 +103,20 @@ const Form = () => {
     });
   };
 
+  const handleButtonSaveClick = () => {
+    if (results.length === Breakpoints.MAX_HISTORY_RESULTS_COUNT) {
+      results.pop();
+    }
+    results.unshift({...userForm});
+    saveResult([...results]);
+  };
+
   return (
     <form className="form">
       <h2 className="form__title">Конвертер валют</h2>
       <fieldset className="form__field form__field--is-avaliable">
         <h3 className="form__field-title">У меня есть</h3>
-        <input className="form__input form__input--number" type="number" value={userForm.avaliableAmount} min={MIN_AMOUNT_FIELD_VALUE} id="is-available" name="is-available" placeholder="1000"
+        <input className="form__input form__input--number" type="number" value={userForm.avaliableAmount} min={Breakpoints.MIN_AMOUNT_FIELD_VALUE} id="is-available" name="is-available" placeholder="1000"
           onChange={handleAvaliableAmountChange}/>
         <select className="form__option" onChange={handleAvaliableCurrencyChange} defaultValue={DEFAULT_USER_FORM.avaliableCurrency}>
           {CURRENCIES.map((currency) => <option value={currency} key={currency}>{currency}</option>)}
@@ -113,7 +124,7 @@ const Form = () => {
       </fieldset>
       <fieldset className="form__field form__field--wanted">
         <h3 className="form__field-title">Хочу приобрести</h3>
-        <input className="form__input form__input--number" type="number" value={userForm.wantedAmount} min={MIN_AMOUNT_FIELD_VALUE} id="wanted" name="wanted" placeholder="1000" onChange={handleWantedAmountChange}/>
+        <input className="form__input form__input--number" type="number" value={userForm.wantedAmount} min={Breakpoints.MIN_AMOUNT_FIELD_VALUE} id="wanted" name="wanted" placeholder="1000" onChange={handleWantedAmountChange}/>
         <select className="form__option" onChange={handleWantedCurrencyChange} defaultValue={DEFAULT_USER_FORM.wantedCurrency}>
           {CURRENCIES.map((currency) => <option value={currency} key={currency}>{currency}</option>)}
         </select>
@@ -123,9 +134,14 @@ const Form = () => {
         <input className="form__input form__input--exchange-date" id="exchange-date" type="date" name="exchange-date"
           required value={userForm.currentDate} min={minDate} onChange={handleDateChange}/>
       </fieldset>
-      <button className="button button--save" type="button">Сохранить результат</button>
+      <button className="button button--save" type="button" onClick={handleButtonSaveClick}>Сохранить результат</button>
     </form>
   );
+};
+
+Form.propTypes = {
+  saveResult: PropTypes.func.isRequired,
+  results: PropTypes.array.isRequired,
 };
 
 export default Form;
