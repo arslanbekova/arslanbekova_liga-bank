@@ -25,7 +25,7 @@ const ExchangeHistory = ({clearResults, results}) => {
             </li>
           )}
         </ul>
-        <button className="button button--clear" type="button" onClick={handleButtonClearClick}>Очистить историю</button>
+        <button className="button button--clear" type="button" onClick={handleButtonClearClick} disabled={!results.length ? true : false}>Очистить историю</button>
       </div>
     </section>
   );

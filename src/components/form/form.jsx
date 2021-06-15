@@ -34,6 +34,7 @@ const Form = ({saveResult, results}) => {
   };
 
   const [userForm, setUserForm] = useState(DEFAULT_USER_FORM);
+  const [isDisableButton, setDisableButton] = useState(true);
 
   let copyUserForm = userForm;
 
@@ -58,7 +59,8 @@ const Form = ({saveResult, results}) => {
       copyUserForm.avaliableAmount = data.rates[userForm.avaliableCurrency];
       copyUserForm.wantedAmount = amount;
       setUserForm({...copyUserForm});
-    });
+    })
+    .catch((error) => error);
   };
 
   const handleAvaliableCurrencyChange = (evt) => {
@@ -75,8 +77,12 @@ const Form = ({saveResult, results}) => {
 
   const handleAvaliableAmountChange = (evt) => {
     const amount = Number(evt.target.value);
+    setDisableButton(false);
     if (amount < Breakpoints.MIN_AMOUNT_FIELD_VALUE) {
-      setUserForm({...DEFAULT_USER_FORM});
+      copyUserForm.avaliableAmount = DEFAULT_USER_FORM.avaliableAmount;
+      copyUserForm.wantedAmount = DEFAULT_USER_FORM.wantedAmount;
+      setUserForm({...copyUserForm});
+      setDisableButton(true);
       return;
     }
     convertAvaliableToWanted(amount);
@@ -84,18 +90,26 @@ const Form = ({saveResult, results}) => {
 
   const handleWantedAmountChange = (evt) => {
     const amount = Number(evt.target.value);
+    setDisableButton(false);
     if (amount < Breakpoints.MIN_AMOUNT_FIELD_VALUE) {
-      setUserForm({...DEFAULT_USER_FORM});
+      copyUserForm.wantedAmount = DEFAULT_USER_FORM.avaliableAmount;
+      copyUserForm.avaliableAmount = DEFAULT_USER_FORM.wantedAmount;
+      setUserForm({...copyUserForm});
+      setDisableButton(true);
       return;
     }
     convertWantedToAvaliable(amount);
   };
 
   const minDate = dayjs(new Date()).subtract(Breakpoints.MAX_DAYS_GAP, `day`).format(`YYYY-MM-DD`);
+  const maxDate = dayjs(new Date()).format(`YYYY-MM-DD`);
 
   const handleDateChange = (evt) => {
     copyUserForm.currentDate = dayjs(evt.target.value).format(`YYYY-MM-DD`);
     setUserForm({...copyUserForm});
+    if (userForm.avaliableAmount === `` || userForm.wantedAmount === ``) {
+      return;
+    }
     convertCurrency(userForm.avaliableAmount, userForm.avaliableCurrency, userForm.wantedCurrency, userForm.currentDate)
     .then((data) => {
       copyUserForm.wantedAmount = data.rates[userForm.wantedCurrency];
@@ -132,9 +146,9 @@ const Form = ({saveResult, results}) => {
       <fieldset className="form__field">
         <label className="visually-hidden" htmlFor="exchange-date">Желаемая дата обмена</label>
         <input className="form__input form__input--exchange-date" id="exchange-date" type="date" name="exchange-date"
-          required value={userForm.currentDate} min={minDate} onChange={handleDateChange}/>
+          required value={userForm.currentDate} min={minDate} max={maxDate} onChange={handleDateChange}/>
       </fieldset>
-      <button className="button button--save" type="button" onClick={handleButtonSaveClick}>Сохранить результат</button>
+      <button className="button button--save" type="button" onClick={handleButtonSaveClick} disabled={isDisableButton}>Сохранить результат</button>
     </form>
   );
 };
