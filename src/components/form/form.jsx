@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import {createAPI} from "../../api";
 
-const api = createAPI();
-
-const Form = ({saveResult, results}) => {
+const Form = ({onSaveResult, results}) => {
   const CURRENCIES = [
     `RUB`,
     `USD`,
@@ -33,10 +31,14 @@ const Form = ({saveResult, results}) => {
     wantedCurrency: defaultCurrencies.WANTED,
   };
 
-  const [userForm, setUserForm] = useState(DEFAULT_USER_FORM);
-  const [isDisableButton, setDisableButton] = useState(true);
+  const api = createAPI();
 
+  const minDate = dayjs(new Date()).subtract(Breakpoints.MAX_DAYS_GAP, `day`).format(`YYYY-MM-DD`);
+  const maxDate = dayjs(new Date()).format(`YYYY-MM-DD`);
+
+  const [userForm, setUserForm] = useState(DEFAULT_USER_FORM);
   let copyUserForm = userForm;
+  const [isDisableButton, setDisableButton] = useState(true);
 
   const convertCurrency = (amount, currencyFrom, currencyTo, date) => {
     return api.get(`/${date}?amount=${amount}&from=${currencyFrom}&to=${currencyTo}`)
@@ -101,9 +103,6 @@ const Form = ({saveResult, results}) => {
     convertWantedToAvaliable(amount);
   };
 
-  const minDate = dayjs(new Date()).subtract(Breakpoints.MAX_DAYS_GAP, `day`).format(`YYYY-MM-DD`);
-  const maxDate = dayjs(new Date()).format(`YYYY-MM-DD`);
-
   const handleDateChange = (evt) => {
     copyUserForm.currentDate = dayjs(evt.target.value).format(`YYYY-MM-DD`);
     setUserForm({...copyUserForm});
@@ -122,7 +121,7 @@ const Form = ({saveResult, results}) => {
       results.pop();
     }
     results.unshift({...userForm});
-    saveResult([...results]);
+    onSaveResult([...results]);
   };
 
   return (
@@ -154,7 +153,7 @@ const Form = ({saveResult, results}) => {
 };
 
 Form.propTypes = {
-  saveResult: PropTypes.func.isRequired,
+  onSaveResult: PropTypes.func.isRequired,
   results: PropTypes.array.isRequired,
 };
 

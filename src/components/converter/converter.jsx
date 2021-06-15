@@ -7,8 +7,8 @@ const Converter = () => {
 
   return (
     <article className="converter">
-      <Form saveResult={setExchangesHistory} results={exchangesHistory}/>
-      <ExchangeHistory clearResults={setExchangesHistory} results={exchangesHistory}/>
+      <Form onSaveResult={setExchangesHistory} results={exchangesHistory}/>
+      <ExchangeHistory onClearResults={setExchangesHistory} results={exchangesHistory}/>
     </article>
   );
 };

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {nanoid} from 'nanoid';
 import dayjs from 'dayjs';
 
-const ExchangeHistory = ({clearResults, results}) => {
+const ExchangeHistory = ({onClearResults, results}) => {
   const MAX_ID_SYMBOLS = 5;
 
   const handleButtonClearClick = () => {
     const minResultsLength = 0;
     results.length = minResultsLength;
-    clearResults([...results]);
+    onClearResults([...results]);
   };
 
   return (
@@ -39,7 +39,7 @@ ExchangeHistory.propTypes = {
     avaliableCurrency: PropTypes.string.isRequired,
     wantedCurrency: PropTypes.string.isRequired,
   })),
-  clearResults: PropTypes.func.isRequired,
+  onClearResults: PropTypes.func.isRequired,
 };
 
 export default ExchangeHistory;
