@@ -19,6 +19,24 @@ const Footer = () => {
       iconId: `youtube`,
     },
   };
+  const FooterMenuSettings = {
+    SERVICE: {
+      title: `Услуги`,
+      path: `services.html`,
+    },
+    CREDIT: {
+      title: `Рассчитать кредит`,
+      path: `credit.html`,
+    },
+    CONTACT: {
+      title: `Контакты`,
+      path: `contacts.html`,
+    },
+    QUESTION: {
+      title: `Задать вопрос`,
+      path: `question.html`,
+    },
+  };
 
   return (
     <footer className="footer">
@@ -31,19 +49,12 @@ const Footer = () => {
           Генеральная лицензия Банка России №1050
           Ⓒ Лига Банк, 2019
         </p>
-        <ul className="footer__nav footer-list">
-          <li className="footer-list__item">
-            <a href="services.html">Услуги</a>
-          </li>
-          <li className="footer-list__item">
-            <a href="credit.html">Рассчитать кредит</a>
-          </li>
-          <li className="footer-list__item">
-            <a href="contacts.html">Контакты</a>
-          </li>
-          <li className="footer-list__item">
-            <a href="question.html">Задать вопрос</a>
-          </li>
+        <ul className="footer__nav">
+          {Object.values(FooterMenuSettings).map((menuItem) =>
+            <li className="footer__nav-item" key={menuItem.title}>
+              <a href={menuItem.path}>{menuItem.title}</a>
+            </li>
+          )}
         </ul>
         <div className="footer__contacts footer__contacts--message">
           <p className="footer__number">*0904</p>
