@@ -1,0 +1,81 @@
+.footer {
+  background-color: $footer-bg;
+  width: 100%;
+}
+
+.footer__wrapper {
+  margin: 0 auto;
+  width: 1366px;
+  height: 224px;
+  padding: 48px 98px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.footer__nav {
+  box-sizing: border-box;
+  padding-top: 12px;
+  padding-left: 8px;
+}
+
+.footer-list__item {
+  margin-bottom: 12px;
+}
+
+.footer__contacts {
+  color: $grey-text;
+  font-size: 12px;
+  line-height: 16.8px;
+
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
+.footer__number {
+  color: $black-text;
+  font-size: 16px;
+}
+
+.footer__contacts--address {
+  width: 22%;
+}
+
+.footer__contacts--message,
+.footer__contacts--phone {
+  height: 100%;
+}
+
+.footer__contacts--message {
+  background: url('../../img/mobile.svg') no-repeat;
+  background-position: 14px 13px;
+
+  box-sizing: border-box;
+  padding-left: 42px;
+  width: 18%;
+}
+.footer__contacts--phone {
+  background: url('../../img/phone.svg') no-repeat;
+  background-position: 11px 13px;
+
+  padding-left: 45px;
+  width: 15%;
+}
+
+.footer__icon--facebook {
+  width: 12px;
+}
+
+.footer__icon--instagram {
+  width: 16px;
+  height: 16px;
+}
+
+.footer__icon--twitter,
+.footer__icon--youtube {
+  width: 16px;
+  height: 13px;
+}
