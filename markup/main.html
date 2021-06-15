@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лига Банк</title>
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="header__wrapper">
+          <div class="logo header__logo-wrapper">
+            <img class="logo__image" src="./img/logo.svg" width="28" height="25" alt="Логотип Лига Банк"> <span class="logo__text">ЛИГА Банк</span>
+          </div>
+          <nav class="header__navigation navigation">
+            <ul class="navigation__list site-list">
+              <li class="site-list__item">
+                <a href="services.html">Услуги</a>
+              </li>
+              <li class="site-list__item">
+                <a href="credit.html">Рассчитать кредит</a>
+              </li>
+              <li class="site-list__item">
+                <a href="converter.html">Конвертер валют</a>
+              </li>
+              <li class="site-list__item">
+                <a href="contacts.html">Контакты</a>
+              </li>
+              <li class="site-list__item">
+                <a href="question.html">Задать вопрос</a>
+              </li>
+            </ul>
+            <ul class="navigation__list user-list">
+              <li class="user-list__item">
+                <a href="login.html">Войти в Интернет-банк</a>
+              </li>
+            </ul>
+          </nav>
+          </div>
+      </header>
+      <main class="main">
+        <section class="promo">
+          <h1 class="promo__h1">Лига Банк</h1>
+          <p class="promo__intro">Кредиты на любой случай</p>
+          <a class="promo__link" href="credit.html">Рассчитать кредит</a>
+        </section>
+        <article class="converter">
+          <form class="form">
+            <h2 class="form__title">Конвертер валют</h2>
+            <fieldset class="form__field form__field--is-avaliable">
+              <h3 class="form__field-title">У меня есть</h3>
+              <input class="form__input form__input--number" type="number" id="is-available" name="is-available" placeholder="1000">
+              <select class="form__option">
+                <option value="RUB">RUB</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBR">GBP</option>
+                <option value="CNY">CNY</option>
+              </select>
+            </fieldset>
+            <fieldset class="form__field form__field--wanted">
+              <h3 class="form__field-title">Хочу приобрести</h3>
+              <input class="form__input form__input--number" type="number" id="wanted" name="wanted" placeholder="1000">
+              <select class="form__option">
+                <option value="RUB">RUB</option>
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBR">GBP</option>
+                <option value="CNY">CNY</option>
+              </select>
+            </fieldset>
+            <fieldset class="form__field">
+              <label class="visually-hidden" for="exchange-date">Желаемая дата обмена</label>
+              <input class="form__input form__input--exchange-date" id="exchange-date" type="date" name="exchange-date"
+              value="" required>
+            </fieldset>
+            <button class="button button--save" type="button">Сохранить результат</button>
+          </form>
+          <section class="exchange-history">
+            <div class="exchange-history__wrapper">
+              <h2 class="exchange-history__title">История конвертации</h2>
+              <ul class="exchange-history__list">
+                <li class="exchange-history__item">
+                  <span class="exchange-history__option exchange-history__option--date">25.11.2020</span>
+                  <span class="exchange-history__option exchange-history__option--amount-from">1000 RUB</span>
+                  <span class="exchange-history__option exchange-history__option--amount-to">13,1234 USD</span>
+                </li>
+              </ul>
+              <button class="button button--clear" type="button">Очистить историю</button>
+            </div>
+          </section>
+        </article>
+      </main>
+      <footer class="footer">
+        <div class="footer__wrapper">
+          <div class="logo footer__logo-wrapper">
+            <img class="logo__image" src="./img/logo.svg" width="28" height="25" alt="Логотип Лига Банк"> <span class="logo__text">ЛИГА Банк</span>
+          </div>
+          <p class="footer__contacts footer__contacts--address">
+            150015, г. Москва, ул. Московская, д. 32
+            Генеральная лицензия Банка России №1050
+            Ⓒ Лига Банк, 2019
+          </p>
+          <ul class="footer__nav">
+            <li class="footer__nav-item">
+              <a href="services.html">Услуги</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="credit.html">Рассчитать кредит</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="contacts.html">Контакты</a>
+            </li>
+            <li class="footer__nav-item">
+              <a href="question.html">Задать вопрос</a>
+            </li>
+          </ul>
+          <div class="footer__contacts footer__contacts--message">
+            <p class="footer__number">*0904</p>
+            <p class="footer__intro">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
+          </div>
+          <div class="footer__contacts footer__contacts--phone">
+            <p class="footer__number">8 800 111 22 33</p>
+            <p class="footer__intro">Бесплатный для всех городов России</p>
+          </div>
+            <ul class="footer__social social-list">
+            <li class="social-list__item">
+              <a class="social-list__link" href="#">
+                <span class="visually-hidden">Мы на фейсбук</span>
+                <svg class="social-list__icon footer__icon footer__icon--facebook" width="9" height="16" aria-hidden="true">
+                  <use xlink:href="./img/sprite-manual.svg#icon-facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list__item">
+              <a class="social-list__link" href="#">
+                <span class="visually-hidden">Мы в инстаграм</span>
+                <svg class="social-list__icon footer__icon footer__icon--instagram" width="9" height="16" aria-hidden="true">
+                  <use xlink:href="./img/sprite-manual.svg#icon-instagram"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list__item">
+              <a class="social-list__link" href="#">
+                <span class="visually-hidden">Мы в твиттере</span>
+                <svg class="social-list__icon footer__icon footer__icon--twitter" width="9" height="16" aria-hidden="true">
+                  <use xlink:href="./img/sprite-manual.svg#icon-twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="social-list__item">
+              <a class="social-list__link" href="#">
+                <span class="visually-hidden">Мы на ютуб</span>
+                <svg class="social-list__icon footer__icon footer__icon--youtube" width="9" height="16" aria-hidden="true">
+                  <use xlink:href="./img/sprite-manual.svg#icon-youtube"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
